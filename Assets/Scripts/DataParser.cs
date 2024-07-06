@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class DataParser : MonoBehaviour
 {
-    [SerializeField] private Dictionary<string, string> _dataString;
+    private Dictionary<string, string> _imageData;
+    private Dictionary<string, string> _textData;
+    private Dictionary<string, string> _soundData;
 
-    public Dictionary<string, string> DataString => _dataString;
-
+    public Dictionary<string, string> ImageData => _imageData;
+    public Dictionary<string, string> TextData => _textData;
+    public Dictionary<string, string> SoundData => _soundData;
 
     public void Initialize(string dataString)
     {
@@ -15,12 +18,17 @@ public class DataParser : MonoBehaviour
 
     private void ExtractDataFromString(string dataString)
     {
-        _dataString = ParseDataString(dataString);
+        var parsedData = ParseDataString(dataString);
+        _imageData = parsedData.Item1;
+        _textData = parsedData.Item2;
+        _soundData = parsedData.Item3;
     }
 
-    Dictionary<string, string> ParseDataString(string dataString)
+    (Dictionary<string, string>, Dictionary<string, string>, Dictionary<string, string>) ParseDataString(string dataString)
     {
-        Dictionary<string, string> data = new Dictionary<string, string>();
+        Dictionary<string, string> imageData = new Dictionary<string, string>();
+        Dictionary<string, string> textData = new Dictionary<string, string>();
+        Dictionary<string, string> soundData = new Dictionary<string, string>();
 
         // Разбиваем строку по символу '&'
         string[] parts = dataString.Split('&');
@@ -32,10 +40,22 @@ public class DataParser : MonoBehaviour
             {
                 string key = parts[i];
                 string value = parts[i + 1];
-                data[key] = value;
+
+                if (key.StartsWith("link"))
+                {
+                    imageData[key] = value;
+                }
+                else if (key.StartsWith("text"))
+                {
+                    textData[key] = value;
+                }
+                else if (key.StartsWith("sound"))
+                {
+                    soundData[key] = value;
+                }
             }
         }
 
-        return data;
+        return (imageData, textData, soundData);
     }
 }

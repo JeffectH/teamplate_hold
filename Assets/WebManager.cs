@@ -1,22 +1,24 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class WebManager : MonoBehaviour
 {
+    public event Action DataReceived;
+
     [SerializeField] private string _targetURL;
     [SerializeField] private string _nameCloneGame;
 
     private string _data;
-
     public string Data => _data;
 
-    public void Initialize() 
+    public void Initialize()
     {
         StartCoroutine(SendData());
     }
 
-    IEnumerator SendData()
+    private IEnumerator SendData()
     {
         WWWForm form = new WWWForm();
 
@@ -35,11 +37,11 @@ public class WebManager : MonoBehaviour
                 Debug.LogError("Error" + www.error);
             }
 
-            _data = www.downloadHandler.text;//получение все строки разбитой по принципу "название_колонки&знаечние_колонки" в данной строке
+            _data = www.downloadHandler.text;//получение всей строки разбитой по принципу "название_колонки&значение_колонки" в данной строке
+
+            DataReceived?.Invoke();
         }
     }
-
-
 }
 
 
