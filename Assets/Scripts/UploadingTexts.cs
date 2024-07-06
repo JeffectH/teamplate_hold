@@ -6,9 +6,13 @@ public class UploadingTexts : MonoBehaviour, IUploadingData
 {
     [SerializeField] private TextMeshProUGUI _textTitle;
     [SerializeField] private TextMeshProUGUI _textGesture;
-    [SerializeField] private TextMeshProUGUI _textTask0;
-    [SerializeField] private TextMeshProUGUI _textTask1;
-    [SerializeField] private TextMeshProUGUI _textWin;
+    [SerializeField] private string _textTask0;
+    [SerializeField] private string _textTask1;
+    [SerializeField] private string _textWin;
+
+    public string TextTask0 => _textTask0;
+    public string TextTask1 => _textTask1;
+    public string TextWin => _textWin;
 
     public void Initialize(Dictionary<string, string> textData)
     {
@@ -31,13 +35,13 @@ public class UploadingTexts : MonoBehaviour, IUploadingData
                     _textGesture.text = value;
                     break;
                 case "textTask0":
-                    _textTask0.text = value;
+                    _textTask0 = value;
                     break;
                 case "textTask1":
-                    _textTask1.text = value;
+                    _textTask1 = value;
                     break;
                 case "textWin":
-                    _textWin.text = value;
+                    _textWin = value;
                     break;
                 default:
                     Debug.LogWarning($"Unhandled key '{key}' in text data.");

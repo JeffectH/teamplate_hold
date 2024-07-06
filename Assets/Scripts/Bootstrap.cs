@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Bootstrap : MonoBehaviour
 {
+    public event Action DownloadComplete;
+
     [SerializeField] private WebManager _webManager;
     [SerializeField] private DataParser _dataParser;
     [SerializeField] private UploadingImages _uploadingImages;
@@ -31,5 +33,7 @@ public class Bootstrap : MonoBehaviour
         _uploadingTexts.Initialize(_dataParser.TextData);
         _uploadingImages.Initialize(_dataParser.ImageData);
         _uploadingSounds.Initialize(_dataParser.SoundData);
+
+        DownloadComplete?.Invoke();
     }
 }

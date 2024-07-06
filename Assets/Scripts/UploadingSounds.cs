@@ -16,7 +16,7 @@ public class UploadingSounds : MonoBehaviour, IUploadingData
         Uploading(soundData);
     }
 
-    public void Uploading(Dictionary<string, string> soundData) 
+    public void Uploading(Dictionary<string, string> soundData)
     {
         StartCoroutine(UploadSounds(soundData));
     }
@@ -54,6 +54,8 @@ public class UploadingSounds : MonoBehaviour, IUploadingData
                 break;
             case "soundRegular":
                 _soundRegular.clip = clip;
+                _soundRegular.Play();
+                _soundRegular.loop = true;
                 break;
             case "soundWin":
                 _soundWin.clip = clip;
