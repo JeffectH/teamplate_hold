@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private SoundManger _soundManger;
 
     private bool _isGestureReachTarget;
+    private bool _startUserClick = true;
 
     private void OnEnable()
     {
@@ -45,10 +46,20 @@ public class GameController : MonoBehaviour
         _timerHold.OnTimerEnd -= PerformingActionsHoldComplete;
     }
 
+    private void Update()
+    {
+        if (_startUserClick == false && Input.GetMouseButtonDown(0)) 
+        {
+            _soundManger.SoundRegular.Play();
+            _startUserClick = true;
+        }
+    }
+
     private void StartGame()
     {
         _canvasGroup.SetTrigger("Show");
         _task0.StartEffect(_uploadingTexts.TextTask0);
+        _startUserClick = false;
     }
 
     private void BeginDragGesture()

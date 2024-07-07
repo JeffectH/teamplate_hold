@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-
 [RequireComponent(typeof(TextMeshProUGUI))]
 
 public class TypewriterEffect : MonoBehaviour

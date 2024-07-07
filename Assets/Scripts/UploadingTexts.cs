@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UploadingTexts : MonoBehaviour, IUploadingData
+public class UploadingTexts : MonoBehaviour, IUploading
 {
     [SerializeField] private TextMeshProUGUI _textTitle;
     [SerializeField] private TextMeshProUGUI _textGesture;
@@ -16,10 +16,10 @@ public class UploadingTexts : MonoBehaviour, IUploadingData
 
     public void Initialize(Dictionary<string, string> textData)
     {
-        Uploading(textData);
+        UploadingData(textData);
     }
 
-    public void Uploading(Dictionary<string, string> textData)
+    public void UploadingData(Dictionary<string, string> textData)
     {
         foreach (var kvp in textData)
         {

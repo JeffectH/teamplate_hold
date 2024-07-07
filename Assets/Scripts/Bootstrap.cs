@@ -29,7 +29,7 @@ public class Bootstrap : MonoBehaviour
     private void UploadData() 
     {
         _dataParser.Initialize(_webManager.Data);
-
+        Debug.Log(_webManager.Data);
         _uploadingTexts.Initialize(_dataParser.TextData);
         _uploadingImages.Initialize(_dataParser.ImageData);
         _uploadingSounds.Initialize(_dataParser.SoundData);

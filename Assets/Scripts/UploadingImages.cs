@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UploadingImages : MonoBehaviour, IUploadingData
+public class UploadingImages : MonoBehaviour, IUploading
 {
     [SerializeField] private Image _background;
     [SerializeField] private Image _gesture;
@@ -13,10 +13,10 @@ public class UploadingImages : MonoBehaviour, IUploadingData
 
     public void Initialize(Dictionary<string, string> dataString)
     {
-        Uploading(dataString);
+        UploadingData(dataString);
     }
 
-    public void Uploading(Dictionary<string, string> dataString)
+    public void UploadingData(Dictionary<string, string> dataString)
     {
         LoadAndAssignImage(dataString, "linkLike", _like1);
         LoadAndAssignImage(dataString, "linkLike", _like2);

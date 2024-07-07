@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class UploadingSounds : MonoBehaviour, IUploadingData
+public class UploadingSounds : MonoBehaviour, IUploading
 {
     [SerializeField] private AudioSource _soundStart;
     [SerializeField] private AudioSource _soundRegular;
@@ -13,10 +13,10 @@ public class UploadingSounds : MonoBehaviour, IUploadingData
 
     public void Initialize(Dictionary<string, string> soundData)
     {
-        Uploading(soundData);
+        UploadingData(soundData);
     }
 
-    public void Uploading(Dictionary<string, string> soundData)
+    public void UploadingData(Dictionary<string, string> soundData)
     {
         StartCoroutine(UploadSounds(soundData));
     }
@@ -28,7 +28,7 @@ public class UploadingSounds : MonoBehaviour, IUploadingData
             string key = sound.Key;
             string url = sound.Value;
 
-            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.OGGVORBIS))
+            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
             {
                 yield return www.SendWebRequest();
 
