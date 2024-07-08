@@ -21,11 +21,6 @@ public class Bootstrap : MonoBehaviour
         _webManager.DataReceived -= UploadData;
     }
 
-    private void Awake()
-    {
-        _webManager.Initialize();
-    }
-
     private void UploadData() 
     {
         _dataParser.Initialize(_webManager.Data);

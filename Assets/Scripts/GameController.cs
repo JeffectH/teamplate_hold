@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (_startUserClick == false && Input.GetMouseButtonDown(0)) 
+        if (_startUserClick == false && Input.GetMouseButton(0)) 
         {
             _soundManger.SoundRegular.Play();
             _startUserClick = true;

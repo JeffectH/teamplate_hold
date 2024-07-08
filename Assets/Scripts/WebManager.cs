@@ -13,18 +13,11 @@ public class WebManager : MonoBehaviour
     private string _data;
     public string Data => _data;
 
-    public void Initialize()
-    {
-        StartCoroutine(SendData());
-    }
-
     public void HandleQueryString(string queryString)
     {
-#if UNITY_WEBGL
-        _targetURL = queryString;
-        Debug.Log("Received query string: " + _targetURL);
-#endif
-        Debug.Log("Received query string: " + _targetURL);
+        _nameCloneGame = queryString;
+
+        StartCoroutine(SendData());
     }
 
     private IEnumerator SendData()
